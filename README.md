@@ -86,6 +86,8 @@ My Drive/
 3. Drag and drop the entire `Framework` folder into the browser window.
 4. Wait for the upload to complete — this may take several minutes depending on your internet connection.
 
+> **Note:** The pre-trained model file `mmcr_train100.pt` (462 MB) is **not** included in this repository. After uploading the folder, download it separately (see [Troubleshooting](#troubleshooting)) and place it at `My Drive/Framework/Heigths_Neural_Network_Change_Detection/mmcr_train100.pt`.
+
 ### Step 2 — Open a notebook in Google Colab
 
 1. In Google Drive, navigate to the notebook you want to run (e.g., `A_Zone/Pipeline_A_Zone.ipynb`).
@@ -253,7 +255,11 @@ Export tasks run asynchronously on Google's servers. Go to [code.earthengine.goo
 Colab free tier sessions can time out. If this happens, remount Drive, re-authenticate GEE, and re-run only the cells from where the session stopped. Output files already exported to Drive are preserved.
 
 **Model file not found (`mmcr_train100.pt`)**
-The file is included in the `Heigths_Neural_Network_Change_Detection/` folder. If it is missing after uploading to Drive, re-upload it from the original `Framework` folder. The download link and citation can be found in `Heigths_Neural_Network_Change_Detection/Link_Acess.txt`.
+This file is not included in the repository because it is 462 MB. Download it from the link below and place it inside `Heigths_Neural_Network_Change_Detection/` on your Google Drive:
+
+[https://drive.google.com/file/d/1F2YGSiXeQ801VOT94FCZqxU618j6D3tO/view?usp=drive_link](https://drive.google.com/file/d/1F2YGSiXeQ801VOT94FCZqxU618j6D3tO/view?usp=drive_link)
+
+The expected path on Drive is: `My Drive/Framework/Heigths_Neural_Network_Change_Detection/mmcr_train100.pt`
 
 ---
 
