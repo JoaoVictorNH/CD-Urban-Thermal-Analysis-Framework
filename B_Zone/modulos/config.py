@@ -56,10 +56,10 @@ SENTINEL2_RGB_BANDS = ['B4', 'B3', 'B2']
 # ═══════════════════════════════════════════════════════════════════════════
 
 UHI_THRESHOLDS = {
-    'very_cold': -1.5,
+    'very_cold': -1.0,
     'cold': -0.5,
     'comfortable': 0.5,
-    'warm': 1.5,
+    'warm': 1.0,
     'hot': float('inf')
 }
 
@@ -68,11 +68,11 @@ UHI_THRESHOLDS = {
 # ═══════════════════════════════════════════════════════════════════════════
 
 UHI_INTENSITY_LABELS = {
-    1: 'Very Cold (< -1.5σ)',
-    2: 'Cold (-1.5σ to -0.5σ)',
-    3: 'Comfortable (-0.5σ to 0.5σ)',
-    4: 'Warm (0.5σ to 1.5σ)',
-    5: 'Very Hot (> 1.5σ)'
+    1: 'LTZ — Low Temperature (< -1σ)',
+    2: 'SLTZ — Sub-Low Temperature (-1σ to -0.5σ)',
+    3: 'MTZ — Medium Temperature (-0.5σ to 0.5σ)',
+    4: 'SHTZ — Sub-High Temperature (0.5σ to 1σ)',
+    5: 'HTZ — High Temperature (> 1σ)'
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -80,9 +80,9 @@ UHI_INTENSITY_LABELS = {
 # ═══════════════════════════════════════════════════════════════════════════
 
 UHI_INTENSITY_COLORS = {
-    1: '#2b83ba',
-    2: '#abdda4',
-    3: '#ffffbf',
-    4: '#fdae61',
-    5: '#d7191c'
+    1: '#2166ac',
+    2: '#67a9cf',
+    3: '#f7f7f7',
+    4: '#ef8a62',
+    5: '#b2182b'
 }

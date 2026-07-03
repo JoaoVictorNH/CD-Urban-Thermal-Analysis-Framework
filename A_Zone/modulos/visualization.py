@@ -586,9 +586,8 @@ def calculate_thermal_change_statistics(results, geometry, methods=None):
     # Classify UHI intensity T1
     uhi_intensity_30m_t1 = classify_uhi_intensity(uhi_30m_t1)
 
-    # Extract LST statistics for conversion
-    lst_mean_t1 = lst_stats_t1['lst_mean'].getInfo()
-    lst_std_t1 = lst_stats_t1['lst_std'].getInfo()
+    # Extract LST statistics for conversion (single server round trip)
+    lst_mean_t1, lst_std_t1 = ee.List([lst_stats_t1['lst_mean'], lst_stats_t1['lst_std']]).getInfo()
 
     # T2 - 30m
     uhi_30m_t2, lst_stats_t2 = calculate_uhi(results['lst_30m_t2'], geometry=geometry, scale=30)
@@ -597,9 +596,8 @@ def calculate_thermal_change_statistics(results, geometry, methods=None):
     # Classify UHI intensity T2
     uhi_intensity_30m_t2 = classify_uhi_intensity(uhi_30m_t2)
 
-    # Extract LST statistics for conversion
-    lst_mean_t2 = lst_stats_t2['lst_mean'].getInfo()
-    lst_std_t2 = lst_stats_t2['lst_std'].getInfo()
+    # Extract LST statistics for conversion (single server round trip)
+    lst_mean_t2, lst_std_t2 = ee.List([lst_stats_t2['lst_mean'], lst_stats_t2['lst_std']]).getInfo()
 
     # Calculate equivalent temperatures for extreme UHI values
     uhi_min_t1 = uhi_stats_30m_t1_dict.get('UHI_min', -3)
@@ -710,8 +708,9 @@ def calculate_thermal_change_statistics(results, geometry, methods=None):
         # Classify UHI intensity T1
         uhi_intensity_10m_t1 = classify_uhi_intensity(uhi_10m_t1)
 
-        lst_mean_10m_t1 = lst_stats_10m_t1['lst_mean'].getInfo()
-        lst_std_10m_t1 = lst_stats_10m_t1['lst_std'].getInfo()
+        lst_mean_10m_t1, lst_std_10m_t1 = ee.List(
+            [lst_stats_10m_t1['lst_mean'], lst_stats_10m_t1['lst_std']]
+        ).getInfo()
 
         # Calculate UHI for T2
         uhi_10m_t2, lst_stats_10m_t2 = calculate_uhi(lst_10m_t2, geometry=geometry, scale=10)
@@ -720,8 +719,9 @@ def calculate_thermal_change_statistics(results, geometry, methods=None):
         # Classify UHI intensity T2
         uhi_intensity_10m_t2 = classify_uhi_intensity(uhi_10m_t2)
 
-        lst_mean_10m_t2 = lst_stats_10m_t2['lst_mean'].getInfo()
-        lst_std_10m_t2 = lst_stats_10m_t2['lst_std'].getInfo()
+        lst_mean_10m_t2, lst_std_10m_t2 = ee.List(
+            [lst_stats_10m_t2['lst_mean'], lst_stats_10m_t2['lst_std']]
+        ).getInfo()
 
         # Calculate equivalent temperatures
         uhi_min_10m_t1 = uhi_stats_10m_t1_dict.get('UHI_min', -3)

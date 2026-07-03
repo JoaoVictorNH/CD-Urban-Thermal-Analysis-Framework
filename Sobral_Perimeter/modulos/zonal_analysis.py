@@ -1382,83 +1382,8 @@ def create_interactive_zonal_map(
     return Map
 
 
-
-def extract_and_plot_transect(
-    Map,
-    image,
-    n_segments=100,
-    reducer='mean',
-    xlabel='Distance (m)',
-    ylabel='Value',
-    title=None,
-    figsize=(12, 5),
-    color='blue',
-    linewidth=2,
-    show_stats=True
-):
-    """
-    Extracts and plots a transect from a line drawn on the map.
-
-    Args:
-        Map: geemap.Map object with a drawn line (user_roi)
-        image: ee.Image to extract values from
-        n_segments: Number of segments along the line
-        reducer: ee.Reducer ('mean', 'median', 'min', 'max', 'stdDev')
-        xlabel: X-axis label
-        ylabel: Y-axis label
-        title: Plot title (optional)
-        figsize: Figure size (width, height)
-        color: Line color
-        linewidth: Line width
-        show_stats: Print statistics to console
-
-    Returns:
-        tuple: (transect_df, fig) - DataFrame with data and matplotlib figure
-    """
-
-    # Get line drawn on map
-    line = Map.user_roi
-
-    if line is None:
-        print("❌ No line drawn! Use the drawing tool on the map.")
-        return None, None
-
-    # Center map on line
-    Map.centerObject(line)
-
-    # Extract transect
-    transect = geemap.extract_transect(
-        image, line, n_segments=n_segments, reducer=reducer, to_pandas=True
-    )
-
-    # Create figure
-    fig = plt.figure(figsize=figsize)
-    plt.plot(transect["distance"], transect[reducer],
-             color=color, linewidth=linewidth)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-
-    if title:
-        plt.title(title)
-
-    plt.grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.show()
-
-    # Print statistics
-    if show_stats:
-        values = transect[reducer].values
-        print(f"\n📊 Transect Statistics:")
-        print(f"   • Length: {transect['distance'].max():.2f} m")
-        print(f"   • Segments: {len(transect)}")
-        print(f"   • Mean: {np.mean(values):.4f}")
-        print(f"   • Median: {np.median(values):.4f}")
-        print(f"   • Std deviation: {np.std(values):.4f}")
-        print(f"   • Minimum: {np.min(values):.4f}")
-        print(f"   • Maximum: {np.max(values):.4f}")
-
-    return transect, fig
-
+# extract_and_plot_transect is imported from modulos.visualization (see top of file)
+# -- do not redefine it here, it would silently diverge from that copy.
 
 # ==============================================================================
 # 6.Z GENERIC SPECTRAL INDEX CHANGE ANALYSIS

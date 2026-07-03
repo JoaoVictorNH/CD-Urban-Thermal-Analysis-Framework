@@ -18,21 +18,16 @@ def calculate_uhi(lst_image, geometry, scale=30):
     """
     Calculates the normalized Urban Heat Island (UHI) index.
     """
-    # Calculate mean
-    lst_mean = lst_image.reduceRegion(
-        reducer=ee.Reducer.mean(),
+    # Calculate mean and standard deviation in a single server call
+    mean_std = lst_image.reduceRegion(
+        reducer=ee.Reducer.mean().combine(ee.Reducer.stdDev(), sharedInputs=True),
         geometry=geometry,
         scale=scale,
         maxPixels=1e9
-    ).values().get(0)
-
-    # Calculate standard deviation
-    lst_std = lst_image.reduceRegion(
-        reducer=ee.Reducer.stdDev(),
-        geometry=geometry,
-        scale=scale,
-        maxPixels=1e9
-    ).values().get(0)
+    )
+    band_name = lst_image.bandNames().get(0)
+    lst_mean = mean_std.get(ee.String(band_name).cat('_mean'))
+    lst_std = mean_std.get(ee.String(band_name).cat('_stdDev'))
 
     # Convert to ee.Number and add protection
     lst_mean = ee.Number(lst_mean)
